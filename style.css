@@ -1,0 +1,451 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #0a0c12;
+    color: #E8ECF6;
+}
+
+:root {
+    --speed: 1.25;
+}
+
+header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #283046;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 18px;
+}
+
+nav a {
+    color: #E8ECF6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #00DCB4;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 58% 42%;
+    gap: 24px;
+}
+
+.animacao {
+    min-height: 560px;
+    border: 2px solid #283046;
+    border-radius: 18px;
+    background: #121620;
+    position: relative;
+    overflow: hidden;
+}
+
+.animacao::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, .35) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 22%, rgba(255, 255, 255, .25) 0 1px, transparent 2px),
+        radial-gradient(circle at 35% 62%, rgba(255, 255, 255, .20) 0 1px, transparent 2px),
+        radial-gradient(circle at 88% 70%, rgba(255, 255, 255, .28) 0 1px, transparent 2px),
+        radial-gradient(circle at 54% 14%, rgba(255, 255, 255, .22) 0 1px, transparent 2px),
+        radial-gradient(circle at 18% 78%, rgba(255, 255, 255, .18) 0 1px, transparent 2px);
+    opacity: .55;
+    z-index: 0;
+    pointer-events: none;
+}
+
+footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    color: #AAB2C6;
+    border-top: 2px solid #283046;
+    margin-top: 18px;
+}
+
+.container-right {
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-right: 6px;
+    min-height: 0;
+}
+
+.cards {
+    background: #121620;
+    border: 2px solid #283046;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cards h3 {
+    margin-bottom: 12px;
+}
+
+.cards p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #AAB2C6;
+}
+
+.cards ul {
+    padding-left: 18px;
+    margin-top: 12px;
+}
+
+.cards ul li {
+    margin-bottom: 8px;
+}
+
+.right {
+    position: sticky;
+    top: 24px;
+    max-height: calc(100vh - 140px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.cards:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.main-title {
+    font-size: 44px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+
+.right h2 {
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+
+.left p {
+    margin-bottom: 16px;
+}
+
+.right p {
+    color: #AAB2C6;
+    line-height: 1.6;
+}
+
+.right p {
+    margin-bottom: 14px;
+}
+
+.solar-system {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    z-index: 1;
+}
+
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at 30% 30%, #FFE38A, #FFB000 55%, #FF6A00 100%);
+    box-shadow: 0 0 30px rgba(255, 176, 0, 0.35);
+}
+
+/* Órbita Base */
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin linear infinite;
+    border: 1px solid rgba(40, 48, 70, .65);
+    box-shadow: 0 0 14px rgba(0, 220, 180, .10);
+}
+
+/* Planeta Base (fica na "borda" da órbita) */
+.orbit .planet {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    border-radius: 50%;
+}
+
+/* Tamanhos + velocidades pos planetas */
+.orbit.mercury {
+    width: 120px;
+    height: 120px;
+    animation-duration: calc(2.4s * var(--speed));
+}
+
+.orbit.venus {
+    width: 160px;
+    height: 160px;
+    animation-duration: calc(4.2s * var(--speed));
+}
+
+.orbit.earth {
+    width: 210px;
+    height: 210px;
+    animation-duration: calc(6s * var(--speed));
+}
+
+.orbit.mars {
+    width: 260px;
+    height: 260px;
+    animation-duration: calc(7.6s * var(--speed));
+}
+
+.orbit.jupiter {
+    width: 320px;
+    height: 320px;
+    animation-duration: calc(10.0s * var(--speed));
+}
+
+.orbit.saturn {
+    width: 380px;
+    height: 380px;
+    animation-duration: calc(12.0s * var(--speed));
+}
+
+.orbit.uranus {
+    width: 440px;
+    height: 440px;
+    animation-duration: calc(14.0s * var(--speed));
+}
+
+.orbit.neptune {
+    width: 500px;
+    height: 500px;
+    animation-duration: calc(16.0s * var(--speed));
+}
+
+/* Tamanhos + cores dos planetas */
+.orbit.mercury .planet {
+    width: 6px;
+    height: 6px;
+    background: #B7B7B7;
+}
+
+.orbit.venus .planet {
+    width: 9px;
+    height: 9px;
+    background: #D9B36C;
+}
+
+.orbit.earth .planet {
+    width: 10px;
+    height: 10px;
+    background: #4AA3FF;
+}
+
+.orbit.mars .planet {
+    width: 8px;
+    height: 8px;
+    background: #D06B4B;
+}
+
+.orbit.jupiter .planet {
+    width: 18px;
+    height: 18px;
+    background: #C8A27A;
+}
+
+.orbit.saturn .planet {
+    width: 16px;
+    height: 16px;
+    background: #D7C38A;
+}
+
+.orbit.uranus .planet {
+    width: 12px;
+    height: 12px;
+    background: #74C7D8;
+}
+
+.orbit.neptune .planet {
+    width: 12px;
+    height: 12px;
+    background: #4C6FFF;
+}
+
+/* Animação de rotação */
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.label {
+    position: absolute;
+    top: -10px;
+    left: 14px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 1;
+    color: #E8ECF6;
+    background: rgba(10, 12, 18, .75);
+    border: 1px solid rgba(40, 48, 70, .8);
+    backdrop-filter: blur(6px);
+    white-space: nowrap;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.orbit.saturn .planet {
+    position: absolute;
+}
+
+.orbit.saturn .planet::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 26px;
+    height: 10px;
+    transform: translate(-50%, -50%) rotate(-20deg);
+    border-radius: 999px;
+    border: 2px solid rgba(215, 195, 138, .75);
+    box-shadow: 0 0 10px rgba(215, 195, 138, .15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .orbit {
+        animation: none !important;
+    }
+}
+
+/*===================================================================
+RESPONSIVO (TABLET/MOBILE)
+===================================================================*/
+
+/* Tablet: reduz um pouco e ajusta a proporção */
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 16px 18px;
+    }
+
+    .main-title {
+        font-size: 38px;
+    }
+
+    .animacao {
+        min-height: 480px;
+    }
+
+    .solar-system {
+        height: 480px;
+    }
+
+    /* No tablet já não faz sentindo manter o stike + scroll inteerno tão agressivo */
+    .right {
+        position: static;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .container-right {
+        overflow: visible;
+        flex: initial;
+        min-height: initial;
+        padding-right: 0;
+    }
+}
+
+/* Mobile: 1 coluna, menu quebra, animação menor, labels escondidas */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    nav ul{
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .main-container {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .main-title {
+        font-size: 32px;
+    }
+
+    left p {
+        margin-bottom: 12px;
+    }
+
+    .animacao {
+        min-height: 360px;
+    }
+
+    .solar-system {
+        height: 360px;
+    }
+
+    /* Reduz a orbita externa para não cortar no mobile */
+    .orbit.neptune { width: 320px; height: 320px; }
+    .orbit.uranus { width: 290px; height: 290px; }
+    .orbit.saturn { width: 260px; height: 260px; }
+    .orbit.jupiter { width: 230px; height: 230px; }
+    .orbit.mars { width: 200px; height: 200px; }
+    .orbit.earth { width: 170px; height: 170px; }
+    .orbit.venus { width: 140px; height: 140px; }
+    .orbit.mercury { width: 110px; height: 110px; }
+
+    /* No mobile, nomes viram poluição visual, então escondemos */
+    .label {
+        display: none;
+    }
+
+    /* Cards com padding menor */
+    .cards {
+        padding: 14px;
+    }
+
+    .cards p {
+        font-size: 15px;
+    }
+}
